@@ -19,10 +19,10 @@
                 @Html.DisplayNameFor(model => model.Description)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.TempsPreparation)
+                Durée (min)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.TempsCuisson)
+                
             </th>
             <th>
                 @Html.DisplayNameFor(model => model.Image)
@@ -51,9 +51,14 @@
             <td>
                 @Html.DisplayFor(model => item.TempsCuisson)
             </td>
+                            
             <td>
-                @Html.DisplayFor(model => item.Image)
+               
+                @if(@item.Image!=null){   
+                <img style="intraligne" src="~/images/@item.Image"/>
+                    }
             </td>
+           
             <td>
                 @Html.DisplayFor(model => item.CategorieId)
             </td>
