@@ -16,7 +16,7 @@ public class RecetteController : Controller
     // GET: RECETTES
     public async Task<IActionResult> Index()    
     {
-        return View(await _context.Recette.OrderBy(r=>r.Categorie).ThenBy(r=>r.Nom).ToListAsync());
+        return View(await _context.Recette.OrderBy(r=>r.Categorie.Nom).ThenBy(r=>r.Nom).Include(r=>r.Categorie).ToListAsync());
     }
 
     // GET: RECETTES/Details/5
@@ -27,7 +27,7 @@ public class RecetteController : Controller
             return NotFound();
         }
 
-        var recette = await _context.Recette
+        var recette = await _context.Recette.Include(r=>r.Categorie)
             .FirstOrDefaultAsync(m => m.Id == id);
         if (recette == null)
         {
@@ -40,6 +40,7 @@ public class RecetteController : Controller
     // GET: RECETTES/Create
     public IActionResult Create()
     {
+        var recette = _context.Recette.Include(r => r.Categorie);
         return View();
     }
 
@@ -118,7 +119,7 @@ public class RecetteController : Controller
             return NotFound();
         }
 
-        var recette = await _context.Recette
+        var recette = await _context.Recette.Include(r => r.Categorie)
             .FirstOrDefaultAsync(m => m.Id == id);
         if (recette == null)
         {

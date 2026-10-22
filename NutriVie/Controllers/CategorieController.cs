@@ -40,6 +40,7 @@ public class CategorieController : Controller
     // GET: CATEGORIES/Create
     public IActionResult Create()
     {
+        
         return View();
     }
 
