@@ -1,6 +1,7 @@
 
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.AspNetCore.Mvc.Rendering;
 using NutriVie.Models;
 using NutriVie.Models.Data;
 
@@ -57,6 +58,12 @@ public class RecetteController : Controller
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }
+        recette.CategorieSelectList = _context.Categorie.Select(c => new SelectListItem
+        {
+            Text = c.Nom,
+            Value = c.Id.ToString()
+        });
+
         return View(recette);
     }
 
@@ -73,6 +80,11 @@ public class RecetteController : Controller
         {
             return NotFound();
         }
+        recette.CategorieSelectList = _context.Categorie.Select(c => new SelectListItem
+        {
+            Text = c.Nom,
+            Value = c.Id.ToString()
+        });
         return View(recette);
     }
 

@@ -1,6 +1,7 @@
 ﻿using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using Microsoft.AspNetCore.Mvc.ModelBinding.Validation;
+using Microsoft.AspNetCore.Mvc.Rendering;
 
 namespace NutriVie.Models
 {
@@ -24,6 +25,8 @@ namespace NutriVie.Models
 
         [ValidateNever]
         public Categorie Categorie { get; set; }
+
+        public IEnumerable<SelectListItem>? CategorieSelectList { get; set; }
 
 
 

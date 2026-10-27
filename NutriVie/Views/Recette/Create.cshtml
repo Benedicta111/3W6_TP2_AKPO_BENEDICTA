@@ -44,7 +44,8 @@
             </div>
 
             <div class="form-group">
-                <label asp-for="Categorie" class="control-label"></label>
+                <label asp-for="CategorieId" class="control-label"></label>
+                <select class="form-control form-select" asp-for="CategorieId" asp-items="@Model.CategorieSelectList"></select>
                 <input asp-for="Categorie.Nom" class="form-control" />
                 <span asp-validation-for="Categorie.Nom" class="text-danger"></span>
             </div>
