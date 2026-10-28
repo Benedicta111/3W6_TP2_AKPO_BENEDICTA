@@ -87,11 +87,11 @@ public class RecetteController : Controller
         {
             return NotFound();
         }
-        var CategorieSelectList = _context.Categorie.Select(c => new SelectListItem
+        ViewBag.CategorieSelectList = _context.Categorie.Select(c => new SelectListItem
         {
             Text = c.Nom,
             Value = c.Id.ToString()
-        });
+        }).ToList();
         return View(recette);
     }
 
@@ -127,6 +127,13 @@ public class RecetteController : Controller
             }
             return RedirectToAction(nameof(Index));
         }
+
+        ViewBag.CategorieSelectList = _context.Categorie.Select(c => new SelectListItem
+        {
+            Text = c.Nom,
+            Value = c.Id.ToString()
+        }).ToList();
+
         return View(recette);
     }
 

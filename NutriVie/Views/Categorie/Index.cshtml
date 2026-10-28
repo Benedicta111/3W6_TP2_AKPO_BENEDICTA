@@ -28,7 +28,10 @@
                 @Html.DisplayFor(model => item.Nom)
             </td>
             <td>
-                @Html.DisplayFor(model => item.Recettes)
+                    @foreach(var recette in item.Recettes)
+                    {
+                        <a asp-controller="Recette" asp-action="Edit" asp-route-id="@recette.Id">@($"{@recette.Nom}({@recette.TempsPreparation} min)" )</a> 
+                    }
             </td>
             <td>
                 <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |

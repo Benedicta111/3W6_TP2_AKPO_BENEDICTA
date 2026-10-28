@@ -26,13 +26,13 @@
             </div>
 
             <div class="form-group">
-                <label asp-for="TempsPreparation" class="control-label"></label>
+                <label asp-for="TempsPreparation" class="control-label">Durée (min)</label>
                 <input asp-for="TempsPreparation" class="form-control" />
                 <span asp-validation-for="TempsPreparation" class="text-danger"></span>
             </div>
 
             <div class="form-group">
-                <label asp-for="TempsCuisson" class="control-label"></label>
+                <label asp-for="TempsCuisson" class="control-label">Cuisson (min)</label>
                 <input asp-for="TempsCuisson" class="form-control" />
                 <span asp-validation-for="TempsCuisson" class="text-danger"></span>
             </div>
@@ -44,7 +44,7 @@
             </div>
 
             <div class="form-group">
-                <label asp-for="Categorie" class="control-label"></label>
+                <label asp-for="Categorie" class="control-label">Catégorie</label>
                 <select class="form-control form-select" asp-for="CategorieId" asp-items="@ViewBag.CategorieSelectList"></select>
                 <span asp-validation-for="Categorie.Nom" class="text-danger"></span>
             </div>
