@@ -41,6 +41,12 @@ public class RecetteController : Controller
     // GET: RECETTES/Create
     public IActionResult Create()
     {
+        ViewBag.CategorieSelectList = _context.Categorie.Select(c => new SelectListItem
+        {
+            Text = c.Nom,
+            Value = c.Id.ToString()
+        }).ToList();
+
         var recette = _context.Recette.Include(r => r.Categorie);
         return View();
     }
@@ -58,11 +64,12 @@ public class RecetteController : Controller
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }
-        recette.CategorieSelectList = _context.Categorie.Select(c => new SelectListItem
+
+        ViewBag.CategorieSelectList = _context.Categorie.Select(c => new SelectListItem
         {
             Text = c.Nom,
             Value = c.Id.ToString()
-        });
+        }).ToList();
 
         return View(recette);
     }
@@ -80,7 +87,7 @@ public class RecetteController : Controller
         {
             return NotFound();
         }
-        recette.CategorieSelectList = _context.Categorie.Select(c => new SelectListItem
+        var CategorieSelectList = _context.Categorie.Select(c => new SelectListItem
         {
             Text = c.Nom,
             Value = c.Id.ToString()

@@ -26,7 +26,7 @@ namespace NutriVie.Models
         [ValidateNever]
         public Categorie Categorie { get; set; }
 
-        public IEnumerable<SelectListItem>? CategorieSelectList { get; set; }
+       
 
 
 
