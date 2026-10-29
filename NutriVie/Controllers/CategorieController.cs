@@ -57,7 +57,7 @@ public class CategorieController : Controller
        
             if (categorieExiste)
             {
-                ViewBag.Erreur = "Cette catégorie existe déjà.";
+               ModelState.AddModelError("Nom","Cette catégorie existe déjà.");
                 return View(categorie);
             }
         
@@ -156,7 +156,7 @@ public class CategorieController : Controller
         }
         else
         {
-            ViewBag.Erreur = "Vous ne pouvez pas supprimer cette catégorie parce qu'elle contient des recettes.";
+            ModelState.AddModelError(string.Empty,"Vous ne pouvez pas supprimer cette catégorie parce qu'elle contient des recettes.");
             return View(categorie);
         }
         await _context.SaveChangesAsync();

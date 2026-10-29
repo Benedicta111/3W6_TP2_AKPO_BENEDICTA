@@ -24,12 +24,12 @@
                 <input asp-for="Recettes" class="form-control" />
                 <span asp-validation-for="Recettes" class="text-danger"></span>
             </div>
-            @if (ViewBag.Erreur != null)
+           @*  @if (ViewBag.Erreur != null)
             {
                 <div class="alert">
                     @(ViewBag.Erreur)
                 </div>
-            }
+            } *@
             
             <partial name="_CreateButtons" />
         </form>

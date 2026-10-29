@@ -27,16 +27,17 @@
         </dd>
     </dl>
     <dl class="row"> 
-@if(ViewBag.Erreur != null)
+@* @if(ViewBag.Erreur != null)
     {
         <dt class="alert">
             @(ViewBag.Erreur)
         </dt>
-    }
+    } *@
     </dl>
         
         
     <form asp-action="Delete">
+        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
         <input type="hidden" asp-for="Id" />
        <partial name="_DeleteButtons" />
     </form>
