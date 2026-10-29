@@ -53,6 +53,14 @@ public class CategorieController : Controller
     [ValidateAntiForgeryToken]
     public async Task<IActionResult> Create([Bind("Id,Nom,Recettes")] Categorie categorie)
     {
+        bool categorieExiste=_context.Categories.Any(c => c.Nom.ToUpper() == categorie.Nom.ToUpper());
+       
+            if (categorieExiste)
+            {
+                ViewBag.Erreur = "Cette catégorie existe déjà.";
+                return View(categorie);
+            }
+        
         if (ModelState.IsValid)
         {
             _context.Add(categorie);
