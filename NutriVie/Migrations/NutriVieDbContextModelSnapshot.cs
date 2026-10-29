@@ -35,7 +35,7 @@ namespace NutriVie.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Categorie");
+                    b.ToTable("Categories");
 
                     b.HasData(
                         new
@@ -97,7 +97,7 @@ namespace NutriVie.Migrations
 
                     b.HasIndex("CategorieId");
 
-                    b.ToTable("Recette");
+                    b.ToTable("Recettes");
 
                     b.HasData(
                         new

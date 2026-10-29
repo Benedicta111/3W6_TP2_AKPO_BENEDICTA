@@ -18,7 +18,7 @@ public class CategorieController : Controller
     {
        
 
-        return View(await _context.Categorie.OrderByDescending(c=>c.Nom).Include(r => r.Recettes.OrderBy(r=>r.Nom)).ToListAsync());
+        return View(await _context.Categories.OrderByDescending(c=>c.Nom).Include(r => r.Recettes.OrderBy(r=>r.Nom)).ToListAsync());
     }
 
     // GET: CATEGORIES/Details/5
@@ -29,7 +29,7 @@ public class CategorieController : Controller
             return NotFound();
         }
 
-        var categorie = await _context.Categorie
+        var categorie = await _context.Categories
             .FirstOrDefaultAsync(m => m.Id == id);
         if (categorie == null)
         {
@@ -70,7 +70,7 @@ public class CategorieController : Controller
             return NotFound();
         }
 
-        var categorie = await _context.Categorie.FindAsync(id);
+        var categorie = await _context.Categories.FindAsync(id);
         if (categorie == null)
         {
             return NotFound();
@@ -121,7 +121,7 @@ public class CategorieController : Controller
             return NotFound();
         }
 
-        var categorie = await _context.Categorie
+        var categorie = await _context.Categories
             .FirstOrDefaultAsync(m => m.Id == id);
         if (categorie == null)
         {
@@ -136,10 +136,10 @@ public class CategorieController : Controller
     [ValidateAntiForgeryToken]
     public async Task<IActionResult> DeleteConfirmed(int? id)
     {
-        var categorie = await _context.Categorie.FindAsync(id);
+        var categorie = await _context.Categories.FindAsync(id);
         if (categorie != null)
         {
-            _context.Categorie.Remove(categorie);
+            _context.Categories.Remove(categorie);
         }
 
         await _context.SaveChangesAsync();
@@ -148,6 +148,6 @@ public class CategorieController : Controller
 
     private bool CategorieExists(int? id)
     {
-        return _context.Categorie.Any(e => e.Id == id);
+        return _context.Categories.Any(e => e.Id == id);
     }
 }

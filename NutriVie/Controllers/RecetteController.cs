@@ -17,7 +17,7 @@ public class RecetteController : Controller
     // GET: RECETTES
     public async Task<IActionResult> Index()    
     {
-        return View(await _context.Recette.OrderBy(r=>r.Categorie.Nom).ThenBy(r=>r.Nom).Include(r=>r.Categorie).ToListAsync());
+        return View(await _context.Recettes.OrderBy(r=>r.Categorie.Nom).ThenBy(r=>r.Nom).Include(r=>r.Categorie).ToListAsync());
     }
 
     // GET: RECETTES/Details/5
@@ -28,7 +28,7 @@ public class RecetteController : Controller
             return NotFound();
         }
 
-        var recette = await _context.Recette.Include(r=>r.Categorie)
+        var recette = await _context.Recettes.Include(r=>r.Categorie)
             .FirstOrDefaultAsync(m => m.Id == id);
         if (recette == null)
         {
@@ -41,13 +41,13 @@ public class RecetteController : Controller
     // GET: RECETTES/Create
     public IActionResult Create()
     {
-        ViewBag.CategorieSelectList = _context.Categorie.Select(c => new SelectListItem
+        ViewBag.CategorieSelectList = _context.Categories.Select(c => new SelectListItem
         {
             Text = c.Nom,
             Value = c.Id.ToString()
         }).ToList();
 
-        var recette = _context.Recette.Include(r => r.Categorie);
+        var recette = _context.Recettes.Include(r => r.Categorie);
         return View();
     }
 
@@ -65,7 +65,7 @@ public class RecetteController : Controller
             return RedirectToAction(nameof(Index));
         }
 
-        ViewBag.CategorieSelectList = _context.Categorie.Select(c => new SelectListItem
+        ViewBag.CategorieSelectList = _context.Categories.Select(c => new SelectListItem
         {
             Text = c.Nom,
             Value = c.Id.ToString()
@@ -82,12 +82,12 @@ public class RecetteController : Controller
             return NotFound();
         }
 
-        var recette = await _context.Recette.FindAsync(id);
+        var recette = await _context.Recettes.FindAsync(id);
         if (recette == null)
         {
             return NotFound();
         }
-        ViewBag.CategorieSelectList = _context.Categorie.Select(c => new SelectListItem
+        ViewBag.CategorieSelectList = _context.Categories.Select(c => new SelectListItem
         {
             Text = c.Nom,
             Value = c.Id.ToString()
@@ -128,7 +128,7 @@ public class RecetteController : Controller
             return RedirectToAction(nameof(Index));
         }
 
-        ViewBag.CategorieSelectList = _context.Categorie.Select(c => new SelectListItem
+        ViewBag.CategorieSelectList = _context.Categories.Select(c => new SelectListItem
         {
             Text = c.Nom,
             Value = c.Id.ToString()
@@ -145,7 +145,7 @@ public class RecetteController : Controller
             return NotFound();
         }
 
-        var recette = await _context.Recette.Include(r => r.Categorie)
+        var recette = await _context.Recettes.Include(r => r.Categorie)
             .FirstOrDefaultAsync(m => m.Id == id);
         if (recette == null)
         {
@@ -160,10 +160,10 @@ public class RecetteController : Controller
     [ValidateAntiForgeryToken]
     public async Task<IActionResult> DeleteConfirmed(int? id)
     {
-        var recette = await _context.Recette.FindAsync(id);
+        var recette = await _context.Recettes.FindAsync(id);
         if (recette != null)
         {
-            _context.Recette.Remove(recette);
+            _context.Recettes.Remove(recette);
         }
 
         await _context.SaveChangesAsync();
@@ -172,6 +172,6 @@ public class RecetteController : Controller
 
     private bool RecetteExists(int? id)
     {
-        return _context.Recette.Any(e => e.Id == id);
+        return _context.Recettes.Any(e => e.Id == id);
     }
 }

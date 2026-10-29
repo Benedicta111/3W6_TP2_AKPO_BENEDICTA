@@ -5,8 +5,7 @@ namespace NutriVie.Models.Data
 {
     public class NutriVieDbContext : DbContext
     {
-        public DbSet<NutriVie.Models.Recette> Recette { get; set; } = default!;
-        public DbSet<NutriVie.Models.Categorie> Categorie { get; set; } = default!;
+        
         public NutriVieDbContext(DbContextOptions<NutriVieDbContext> options): base(options)
         {
 
