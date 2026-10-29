@@ -18,6 +18,10 @@ namespace NutriVie.Controllers
             var statsVm = new StatVM(_context.AlimentRecettes.Include(r=>r.Aliment).Include(r=>r.Recette).ToList());
             return View(statsVm);
         }
+        public IActionResult Recettes()
+        {
+            return View();
+        }
        
     }
 }
