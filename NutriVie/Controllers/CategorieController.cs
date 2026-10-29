@@ -137,11 +137,20 @@ public class CategorieController : Controller
     public async Task<IActionResult> DeleteConfirmed(int? id)
     {
         var categorie = await _context.Categories.FindAsync(id);
-        if (categorie != null)
+        if (categorie == null)
+        {
+            return NotFound();
+        }
+        bool RecettePresente = await _context.Recettes.AnyAsync(r => r.CategorieId == id);
+        if (!RecettePresente)
         {
             _context.Categories.Remove(categorie);
         }
-
+        else
+        {
+            ViewBag.Erreur = "Vous ne pouvez pas supprimer cette catégorie parce qu'elle contient des recettes.";
+            return View(categorie);
+        }
         await _context.SaveChangesAsync();
         return RedirectToAction(nameof(Index));
     }
