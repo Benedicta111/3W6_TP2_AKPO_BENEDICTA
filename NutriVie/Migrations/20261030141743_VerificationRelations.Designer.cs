@@ -11,8 +11,8 @@ using NutriVie.Models.Data;
 namespace NutriVie.Migrations
 {
     [DbContext(typeof(NutriVieDbContext))]
-    [Migration("20261029173501_ModelAlimentRecette")]
-    partial class ModelAlimentRecette
+    [Migration("20261030141743_VerificationRelations")]
+    partial class VerificationRelations
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)

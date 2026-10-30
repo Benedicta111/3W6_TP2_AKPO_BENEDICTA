@@ -16,7 +16,7 @@ namespace NutriVie.ViewModel
                     Temps=r.First().Recette.TempsCuisson + r.First().Recette.TempsPreparation
                 })
                 .OrderBy(r=>r.Temps).Take(4).ToList();
-            NbreDeCalorieRecetteFr = alimentRecette.Where(r => r.Recette.CategorieId == 1).GroupBy(r => r.RecetteId).Select(r => r.Sum(r => (r.Poids / 100.0) * r.Aliment.CaloriesPour100g)).Min();
+            NbreDeCalorieRecetteFr =alimentRecette.Where(r => r.Recette.CategorieId == 1).GroupBy(r => r.RecetteId).Select(r => r.Sum(r => (r.Poids / 100.0) * r.Aliment.CaloriesPour100g)).Min();
 
 
         }

@@ -18,9 +18,21 @@ namespace NutriVie.Controllers
             var statsVm = new StatVM(_context.AlimentRecettes.Include(r=>r.Aliment).Include(r=>r.Recette).ToList());
             return View(statsVm);
         }
-        public IActionResult Recettes()
+        public IActionResult AllRecettes()
         {
-            return View();
+            List<RecetteCategorieVm> listeCategorie = _context.Categories.Select(c =>
+            new RecetteCategorieVm
+            {
+                Id = c.Id,
+                Nom = c.Nom,
+                Recettes = c.Recettes.Select(r => new RecetteInfoVm
+                {
+                    Nom = r.Nom,
+                    NbIngrédients = r.AlimentRecettes.Count(),
+                    TempsTotal = r.TempsCuisson + r.TempsPreparation
+                }).ToList()
+            }).ToList();
+            return View(listeCategorie);
         }
        
     }

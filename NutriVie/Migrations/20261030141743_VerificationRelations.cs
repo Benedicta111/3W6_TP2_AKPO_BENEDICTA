@@ -7,7 +7,7 @@
 namespace NutriVie.Migrations
 {
     /// <inheritdoc />
-    public partial class ModelAlimentRecette : Migration
+    public partial class VerificationRelations : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)

@@ -1,5 +1,18 @@
-﻿@*
-    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
-*@
-@{
-}
+﻿@model NutriVie.ViewModel.RecetteCategorieVm
+
+<table class="table table-bordered table-striped">
+    <thead>
+        <tr>
+            <th>Nom de la recette</th>
+            <th>Nombre d'ingrédients</th>
+            <th>Temps total (min)</th>
+            <th>Statut</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var recette in Model.Recettes)
+        {
+            <partial name="_Rangee" model="recette" />
+        }
+    </tbody>
+</table>

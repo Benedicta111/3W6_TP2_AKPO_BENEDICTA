@@ -1,5 +1,20 @@
-﻿@*
-    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
-*@
-@{
-}
+﻿@model NutriVie.ViewModel.RecetteInfoVm
+<tr>
+    <td>@Model.Nom</td>
+    <td>@Model.NbIngrédients</td>
+    <td>@Model.TempsTotal</td>
+    <td>
+        @if (Model.TempsTotal <= 50)
+        {
+            <span class="text-success">Recette de courte durée</span>
+        }
+        else if (Model.TempsTotal <= 90)
+        {
+            <span class="text-warning">Recette de durée moyenne</span>
+        }
+        else
+        {
+            <span class="text-danger">Recette de longue durée</span>
+        }
+    </td>
+</tr>
